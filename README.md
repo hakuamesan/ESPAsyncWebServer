@@ -3,12 +3,8 @@
 
 A fork of the [ESPAsyncWebServer](https://github.com/me-no-dev/ESPAsyncWebServer) library by [@me-no-dev](https://github.com/me-no-dev) for [ESPHome](https://esphome.io).
 
-For help and support [![Join the chat at https://gitter.im/me-no-dev/ESPAsyncWebServer](https://badges.gitter.im/me-no-dev/ESPAsyncWebServer.svg)](https://gitter.im/me-no-dev/ESPAsyncWebServer?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
-Async HTTP and WebSocket Server for ESP8266 Arduino
-
-For ESP8266 it requires [ESPAsyncTCP](https://github.com/me-no-dev/ESPAsyncTCP)
-To use this library you might need to have the latest git versions of [ESP8266](https://github.com/esp8266/Arduino) Arduino Core
+Async HTTP and WebSocket Server for ESP32
 
 For ESP32 it requires [AsyncTCP](https://github.com/me-no-dev/AsyncTCP) to work
 To use this library you might need to have the latest git versions of [ESP32](https://github.com/espressif/arduino-esp32) Arduino Core
@@ -102,7 +98,6 @@ To use this library you might need to have the latest git versions of [ESP32](ht
 1. Install [PlatformIO IDE](http://platformio.org/platformio-ide)
 2. Create new project using "PlatformIO Home > New Project"
 3. Update dev/platform to staging version:
-   - [Instruction for Espressif 8266](http://docs.platformio.org/en/latest/platforms/espressif8266.html#using-arduino-framework-with-staging-version)
    - [Instruction for Espressif 32](http://docs.platformio.org/en/latest/platforms/espressif32.html#using-arduino-framework-with-staging-version)
  4. Add "ESP Async WebServer" to project using [Project Configuration File `platformio.ini`](http://docs.platformio.org/page/projectconf.html) and [lib_deps](http://docs.platformio.org/page/projectconf/section_env_library.html#lib-deps) option:
 
