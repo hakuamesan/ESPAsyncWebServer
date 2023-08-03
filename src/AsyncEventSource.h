@@ -22,32 +22,16 @@
 
 #include <Arduino.h>
 #include <Arduino.h>
-#if defined(ESP32) || defined(LIBRETUYA)
 #include <AsyncTCP.h>
-#else
-#include <ESPAsyncTCP.h>
-#endif
 
 #ifndef SSE_MAX_QUEUED_MESSAGES
 #define SSE_MAX_QUEUED_MESSAGES 32
 #endif
 
 #include <ESPAsyncWebServer.h>
-
 #include "AsyncWebSynchronization.h"
 
-#ifdef ESP8266
-#include <Hash.h>
-#ifdef CRYPTO_HASH_h // include Hash.h from espressif framework if the first include was from the crypto library
-#include <../src/Hash.h>
-#endif
-#endif
-
-#if defined(ESP32) || defined(LIBRETUYA)
 #define DEFAULT_MAX_SSE_CLIENTS 8
-#else
-#define DEFAULT_MAX_SSE_CLIENTS 4
-#endif
 
 class AsyncEventSource;
 class AsyncEventSourceResponse;

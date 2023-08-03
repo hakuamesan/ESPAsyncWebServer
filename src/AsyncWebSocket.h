@@ -22,33 +22,16 @@
 #define ASYNCWEBSOCKET_H_
 
 #include <Arduino.h>
-#if defined(ESP32) || defined(LIBRETUYA)
 #include <AsyncTCP.h>
 #ifndef WS_MAX_QUEUED_MESSAGES
 #define WS_MAX_QUEUED_MESSAGES 32
 #endif
-#else
-#include <ESPAsyncTCP.h>
-#ifndef WS_MAX_QUEUED_MESSAGES
-#define WS_MAX_QUEUED_MESSAGES 8
-#endif
-#endif
+
 #include <ESPAsyncWebServer.h>
 
 #include "AsyncWebSynchronization.h"
 
-#ifdef ESP8266
-#include <Hash.h>
-#ifdef CRYPTO_HASH_h // include Hash.h from espressif framework if the first include was from the crypto library
-#include <../src/Hash.h>
-#endif
-#endif
-
-#if defined(ESP32) || defined(LIBRETUYA)
 #define DEFAULT_MAX_WS_CLIENTS 8
-#else
-#define DEFAULT_MAX_WS_CLIENTS 4
-#endif
 
 class AsyncWebSocket;
 class AsyncWebSocketResponse;

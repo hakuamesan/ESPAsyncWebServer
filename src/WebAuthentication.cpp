@@ -20,13 +20,9 @@
 */
 #include "WebAuthentication.h"
 #include <libb64/cencode.h>
-#ifdef ESP32
 #include "mbedtls/md5.h"
-#else
-#include "md5.h"
-#endif
 
-
+#define ESP32 1
 // Basic Auth hash = base64("username:password")
 
 bool checkBasicAuthentication(const char * hash, const char * username, const char * password){
@@ -59,26 +55,18 @@ bool checkBasicAuthentication(const char * hash, const char * username, const ch
 }
 
 static bool getMD5(uint8_t * data, uint16_t len, char * output){//33 bytes or more
-#ifdef ESP32
-    mbedtls_md5_context _ctx;
-#else
-    md5_context_t _ctx;
-#endif
+  mbedtls_md5_context _ctx;
   uint8_t i;
   uint8_t * _buf = (uint8_t*)malloc(16);
   if(_buf == NULL)
     return false;
   memset(_buf, 0x00, 16);
-#ifdef ESP32
+
   mbedtls_md5_init(&_ctx);
   mbedtls_md5_starts_ret(&_ctx);
   mbedtls_md5_update_ret(&_ctx, data, len);
   mbedtls_md5_finish_ret(&_ctx, _buf);
-#else
-  MD5Init(&_ctx);
-  MD5Update(&_ctx, data, len);
-  MD5Final(_buf, &_ctx);
-#endif
+
   for(i = 0; i < 16; i++) {
     sprintf(output + (i * 2), "%02x", _buf[i]);
   }
@@ -87,11 +75,8 @@ static bool getMD5(uint8_t * data, uint16_t len, char * output){//33 bytes or mo
 }
 
 static String genRandomMD5(){
-#ifdef ESP8266
-  uint32_t r = RANDOM_REG32;
-#else
   uint32_t r = rand();
-#endif
+
   char * out = (char*)malloc(33);
   if(out == NULL || !getMD5((uint8_t*)(&r), 4, out))
     return "";
@@ -143,7 +128,7 @@ String requestDigestAuthentication(const char * realm){
 
 bool checkDigestAuthentication(const char * header, const char * method, const char * username, const char * password, const char * realm, bool passwordIsHash, const char * nonce, const char * opaque, const char * uri){
   if(username == NULL || password == NULL || header == NULL || method == NULL){
-    //os_printf("AUTH FAIL: missing requred fields\n");
+    //os_printf("AUTH FAIL: missing required fields\n");
     return false;
   }
 

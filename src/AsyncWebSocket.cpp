@@ -22,13 +22,11 @@
 #include "AsyncWebSocket.h"
 
 #include <libb64/cencode.h>
+#define ESP32 1
 
-#ifndef ESP8266
 #include "mbedtls/sha1.h"
 #include "mbedtls/version.h"
-#else
-#include <Hash.h>
-#endif
+
 
 #define MAX_PRINTF_LEN 64
 

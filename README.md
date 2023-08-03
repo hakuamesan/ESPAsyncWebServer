@@ -1,13 +1,13 @@
-# ESPAsyncWebServer
-[![Build Status](https://travis-ci.org/me-no-dev/ESPAsyncWebServer.svg?branch=master)](https://travis-ci.org/me-no-dev/ESPAsyncWebServer) ![](https://github.com/me-no-dev/ESPAsyncWebServer/workflows/ESP%20Async%20Web%20Server%20CI/badge.svg) [![Codacy Badge](https://api.codacy.com/project/badge/Grade/395dd42cfc674e6ca2e326af3af80ffc)](https://www.codacy.com/manual/me-no-dev/ESPAsyncWebServer?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=me-no-dev/ESPAsyncWebServer&amp;utm_campaign=Badge_Grade)
+# ESP Async Web Server
 
-A fork of the [ESPAsyncWebServer](https://github.com/me-no-dev/ESPAsyncWebServer) library by [@me-no-dev](https://github.com/me-no-dev) for [ESPHome](https://esphome.io).
+Customized version of the below fork adapted for my use case. (namely, ESP32 only).
+Original: [ESPAsyncWebServer](https://github.com/me-no-dev/ESPAsyncWebServer) library by [@me-no-dev](https://github.com/me-no-dev) 
 
 
 Async HTTP and WebSocket Server for ESP32
 
 For ESP32 it requires [AsyncTCP](https://github.com/me-no-dev/AsyncTCP) to work
-To use this library you might need to have the latest git versions of [ESP32](https://github.com/espressif/arduino-esp32) Arduino Core
+
 
 ## Table of contents
 - [ESPAsyncWebServer](#espasyncwebserver)
@@ -111,7 +111,7 @@ framework = arduino
 lib_deps = ESP Async WebServer
 
 # or using GIT Url (the latest development version)
-lib_deps = https://github.com/me-no-dev/ESPAsyncWebServer.git
+lib_deps = https://github.com/hakuamesan/ESPAsyncWebServer.git
 ```
  5. Happy coding with PlatformIO!
 
@@ -745,7 +745,7 @@ server.serveStatic("/", SPIFFS, "/www/").setLastModified("Mon, 20 Jun 2016 14:00
 
 // During setup - read last modified value from config or EEPROM
 String date_modified = loadDateModified();
-AsyncStaticWebHandler* handler = &server.serveStatic("/", SPIFFS, "/www/");
+AsyncStaticWebHandler* handler = &server.serveStatic("/", LittleFS, "/www/");
 handler->setLastModified(date_modified);
 
 // At a later event when files are updated

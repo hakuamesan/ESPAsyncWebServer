@@ -28,15 +28,9 @@
 
 #include "StringArray.h"
 
-#if defined(ESP32) || defined(LIBRETUYA)
+
 #include <WiFi.h>
 #include <AsyncTCP.h>
-#elif defined(ESP8266)
-#include <ESP8266WiFi.h>
-#include <ESPAsyncTCP.h>
-#else
-#error Platform not supported
-#endif
 
 #ifdef ASYNCWEBSERVER_REGEX
 #define ASYNCWEBSERVER_REGEX_ATTRIBUTE
