@@ -30,6 +30,7 @@
 #include <time.h>
 
 #include "ESPAsyncWebServer.h"
+#define HTTP_ANY   0b01111111
 
 class AsyncStaticWebHandler: public AsyncWebHandler {
    using File = fs::File;
