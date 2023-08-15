@@ -29,6 +29,8 @@
 #include "stddef.h"
 #include <time.h>
 
+#include "ESPAsyncWebServer.h"
+
 class AsyncStaticWebHandler: public AsyncWebHandler {
    using File = fs::File;
    using FS = fs::FS;
